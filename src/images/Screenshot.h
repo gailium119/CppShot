@@ -11,12 +11,14 @@ protected:
 	HWND m_window = nullptr;
 
 	RECT createRect();
+	RECT createDesktopRect();
 	void encoderClsid();
 public:
 	Screenshot();
 	Screenshot(HWND window);
 	~Screenshot();
 	void capture(HWND window);
+	void captureDesktop();
 	void save(const std::wstring& path);
 	bool isCaptured();
 	Gdiplus::Bitmap* getBitmap() const;

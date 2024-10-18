@@ -30,11 +30,30 @@ void Screenshot::capture(HWND window) {
 	m_image = new Gdiplus::Bitmap(hbitmap, NULL);
 	//delete hbitmap;
 }
+void Screenshot::captureDesktop() {
+    delete m_image;
 
+    RECT rct = createDesktopRect();
+
+    HDC hdc = GetDC(HWND_DESKTOP);
+    HDC memdc = CreateCompatibleDC(hdc);
+    HBITMAP hbitmap = CreateCompatibleBitmap(hdc, rct.right - rct.left, rct.bottom - rct.top);
+
+    SelectObject(memdc, hbitmap);
+    BitBlt(memdc, 0, 0, rct.right - rct.left, rct.bottom - rct.top, hdc, rct.left, rct.top, SRCCOPY);
+
+    DeleteDC(memdc);
+    ReleaseDC(HWND_DESKTOP, hdc);
+
+    m_image = new Gdiplus::Bitmap(hbitmap, NULL);
+    //delete hbitmap;
+}
 RECT Screenshot::createRect() {
     return m_captureRect = CppShot::getCaptureRect(m_window);
 }
-
+RECT Screenshot::createDesktopRect() {
+    return m_captureRect = CppShot::getDesktopRect();
+}
 void Screenshot::save(const std::wstring& path) {
 	// This is supposed to be gathered from the OS but the encoder CLSID has never changed, so this is safe enough
 	// The old version of cppshot had a bug that made it use the hardcoded one anyway

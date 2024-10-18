@@ -13,13 +13,23 @@ MainWindow::MainWindow() : Window((HBRUSH) (COLOR_BTNFACE + 1), L"MainCreWindow"
     
     this->addButton()
         .setPosition(10, 10)
-        .setSize(500, 100)
+        .setSize(500, 50)
         .setTitle(L"This button doesn't do anything, press CTRL+B to take a screenshot");
 
     this->addButton()
-        .setPosition(10, 120)
-        .setSize(500, 100)
+        .setPosition(10, 70)
+        .setSize(500, 50)
         .setTitle(L"Or you can press CTRL+SHIFT+B to take inactive and active screenshots");
+
+    this->addButton()
+        .setPosition(10, 130)
+        .setSize(500, 50)
+        .setTitle(L"Or you can press CTRL+ALT+B to take a screenshot of the full screen");
+
+    this->addButton()
+        .setPosition(10, 190)
+        .setSize(500, 50)
+        .setTitle(L"Or you can press CTRL+ALT+X to hide this window");
 
     this->addButton()
         .setCallback([this](){

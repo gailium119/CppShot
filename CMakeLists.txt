@@ -42,7 +42,7 @@ IF( DEFINED LINK_UNICOWS )
 	target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libunicows.a)	
 ENDIF()
 
-target_link_libraries(${PROJECT_NAME} gdiplus advapi32 gdi32 user32 kernel32 comctl32)
+target_link_libraries(${PROJECT_NAME} gdiplus advapi32 gdi32 user32 kernel32 comctl32 shell32)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 

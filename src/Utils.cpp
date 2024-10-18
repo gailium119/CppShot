@@ -87,6 +87,9 @@ RECT CppShot::getCaptureRect(HWND window) {
     rct.bottom = (rctDesktop.bottom > (rct.bottom+offset)) ? (rct.bottom + offset) : rctDesktop.bottom;
     rct.top = (rctDesktop.top < (rct.top-offset)) ? (rct.top - offset) : rctDesktop.top;
 
+    rct.left = (rct.left < 0) ? 0 : rct.left;
+    rct.top = (rct.top < 0) ? 0 : rct.top;
+
     return rct;
 }
 
